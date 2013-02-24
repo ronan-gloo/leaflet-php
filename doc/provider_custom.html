@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Extends Providers</title>
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.css" />
+				<script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
+			
+							<script src="https://raw.github.com/turban/leaflet-plugins-1/241dada8e90342eff70eef0be1e1ac1207f9ce3a/layer/tile/Bing.js"></script>
+							<style>
+			html, body{
+				margin: 0;
+			}
+			#map {
+				height: 400px;
+			}
+			.code {
+				margin: 10px;
+				padding: 10px;
+				border: 2px solid #e1e1e1;
+				background-color: #f5f5f5;
+			}
+			.code h3 {
+				margin: 0 0 5px 0;
+				padding-bottom: 5px;
+				border-bottom: 1px solid #e1e1e1;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div id="map"></div>
+		<div class="code">
+			<h3>Extends Providers</h3>
+			<div><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php&nbsp;<br /></span><span style="color: #FF8000">//&nbsp;namespace&nbsp;Leaflet;<br />//&nbsp;Bing&nbsp;plugin&nbsp;from:&nbsp;https://github.com/shramov/leaflet-plugins/pull/60<br /><br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">BingProvider&nbsp;</span><span style="color: #007700">extends&nbsp;</span><span style="color: #0000BB">Layer</span><span style="color: #007700">\</span><span style="color: #0000BB">Tile</span><span style="color: #007700">\</span><span style="color: #0000BB">Layer&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">setLocation</span><span style="color: #007700">(</span><span style="color: #0000BB">$location</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Set&nbsp;a&nbsp;default&nbsp;api&nbsp;key<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">location&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'Anqm0F_JjIZvT0P3abS6KONpaBaKuTnITRrnYuiJCE0WOhH6ZbE4DzeT6brvKVR5'</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Bing&nbsp;plugin&nbsp;uses&nbsp;'type'&nbsp;instead&nbsp;of&nbsp;our&nbsp;standard&nbsp;'style'&nbsp;keyword&nbsp;to&nbsp;set&nbsp;tiles&nbsp;type<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">public&nbsp;function&nbsp;</span><span style="color: #0000BB">beforeRegister</span><span style="color: #007700">()<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">$type&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">options</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">get</span><span style="color: #007700">(</span><span style="color: #DD0000">'style'</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">options</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">set</span><span style="color: #007700">(</span><span style="color: #DD0000">'type'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$type</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">options</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">delete</span><span style="color: #007700">(</span><span style="color: #DD0000">'style'</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;The&nbsp;plugin&nbsp;name<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">public&nbsp;function&nbsp;</span><span style="color: #0000BB">jsName</span><span style="color: #007700">()<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #DD0000">'L.bingLayer'</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span style="color: #FF8000">//&nbsp;Attache&nbsp;aa&nbsp;event&nbsp;to&nbsp;the&nbsp;map<br /></span><span style="color: #0000BB">$layer&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">BingProvider</span><span style="color: #007700">([</span><span style="color: #DD0000">'style'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'AerialWithLabels'</span><span style="color: #007700">]);<br /><br /></span><span style="color: #0000BB">$map&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Map</span><span style="color: #007700">(</span><span style="color: #DD0000">'map'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$map</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fitWorld</span><span style="color: #007700">()-&gt;</span><span style="color: #0000BB">addLayer</span><span style="color: #007700">(</span><span style="color: #0000BB">$layer</span><span style="color: #007700">);<br /></span>
+</span>
+</code></div>
+		</div>
+		
+		<script type="text/javascript">
+			var leafA = L.bingLayer("Anqm0F_JjIZvT0P3abS6KONpaBaKuTnITRrnYuiJCE0WOhH6ZbE4DzeT6brvKVR5",{type:"AerialWithLabels"});
+var map = L.map("map").fitWorld().addLayer(leafA);
+		</script>
+	</body>
+</html>

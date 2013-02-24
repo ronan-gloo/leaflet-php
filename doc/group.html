@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Layer Groups</title>
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.css" />
+				<script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
+				<style>
+			html, body{
+				margin: 0;
+			}
+			#map {
+				height: 400px;
+			}
+			.code {
+				margin: 10px;
+				padding: 10px;
+				border: 2px solid #e1e1e1;
+				background-color: #f5f5f5;
+			}
+			.code h3 {
+				margin: 0 0 5px 0;
+				padding-bottom: 5px;
+				border-bottom: 1px solid #e1e1e1;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div id="map"></div>
+		<div class="code">
+			<h3>Layer Groups</h3>
+			<div><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php&nbsp;<br />$map&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Map</span><span style="color: #007700">(</span><span style="color: #DD0000">'map'</span><span style="color: #007700">,&nbsp;[</span><span style="color: #DD0000">'center'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;[</span><span style="color: #0000BB">40.72</span><span style="color: #007700">,&nbsp;-</span><span style="color: #0000BB">74.12</span><span style="color: #007700">],&nbsp;</span><span style="color: #DD0000">'zoom'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">12</span><span style="color: #007700">]);<br /></span><span style="color: #0000BB">$tile&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Layer</span><span style="color: #007700">\</span><span style="color: #0000BB">Tile</span><span style="color: #007700">\</span><span style="color: #0000BB">Osm</span><span style="color: #007700">([</span><span style="color: #DD0000">'style'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'openriverboatmap'</span><span style="color: #007700">]);<br /></span><span style="color: #0000BB">$tile</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addTo</span><span style="color: #007700">(</span><span style="color: #0000BB">$map</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;loop&nbsp;to&nbsp;genretes&nbsp;markers<br /></span><span style="color: #007700">foreach&nbsp;(</span><span style="color: #0000BB">range</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">5</span><span style="color: #007700">)&nbsp;as&nbsp;</span><span style="color: #0000BB">$val</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$markers</span><span style="color: #007700">[]&nbsp;=&nbsp;new&nbsp;</span><span style="color: #0000BB">Layer</span><span style="color: #007700">\</span><span style="color: #0000BB">Marker</span><span style="color: #007700">([</span><span style="color: #0000BB">floatval</span><span style="color: #007700">(</span><span style="color: #0000BB">40.7</span><span style="color: #007700">.</span><span style="color: #0000BB">$val</span><span style="color: #007700">),&nbsp;</span><span style="color: #0000BB">floatval</span><span style="color: #007700">(-</span><span style="color: #0000BB">74.1</span><span style="color: #007700">.</span><span style="color: #0000BB">$val</span><span style="color: #007700">)]);<br />}<br /></span><span style="color: #FF8000">//&nbsp;Extra&nbsp;layer<br /></span><span style="color: #0000BB">$circle&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Layer</span><span style="color: #007700">\</span><span style="color: #0000BB">Vector</span><span style="color: #007700">\</span><span style="color: #0000BB">Circle</span><span style="color: #007700">([</span><span style="color: #0000BB">40.71</span><span style="color: #007700">,&nbsp;-</span><span style="color: #0000BB">74.15</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">1000</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">//&nbsp;Create&nbsp;Layer&nbsp;Group&nbsp;with&nbsp;markers<br /></span><span style="color: #0000BB">$group&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Layer</span><span style="color: #007700">\</span><span style="color: #0000BB">Group</span><span style="color: #007700">(</span><span style="color: #0000BB">$markers</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">//&nbsp;Add&nbsp;layer<br /></span><span style="color: #0000BB">$group</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addLayer</span><span style="color: #007700">(</span><span style="color: #0000BB">$circle</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">//&nbsp;Popups<br /></span><span style="color: #0000BB">$group</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">eachLayer</span><span style="color: #007700">(function(</span><span style="color: #0000BB">$c</span><span style="color: #007700">){<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">args</span><span style="color: #007700">(</span><span style="color: #DD0000">'layer'</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">line</span><span style="color: #007700">(</span><span style="color: #DD0000">'layer.bindPopup("Hello")'</span><span style="color: #007700">);<br />});<br /></span><span style="color: #FF8000">//&nbsp;Add&nbsp;to&nbsp;map<br /></span><span style="color: #0000BB">$group</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addTo</span><span style="color: #007700">(</span><span style="color: #0000BB">$map</span><span style="color: #007700">);<br /></span>
+</span>
+</code></div>
+		</div>
+		
+		<script type="text/javascript">
+			var map = L.map("map",{center:[40.72,-74.12],zoom:12});
+var leafA = L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png",{style:"openriverboatmap"}).addTo(map);
+var leafB = L.marker([40.71,-74.11]);
+var leafC = L.marker([40.72,-74.12]);
+var leafD = L.marker([40.73,-74.13]);
+var leafE = L.marker([40.74,-74.14]);
+var leafF = L.marker([40.75,-74.15]);
+var leafG = L.circle([40.71,-74.15],1000);
+var leafH = L.layerGroup([leafB,leafC,leafD,leafE,leafF]).addLayer(leafG);
+leafH.eachLayer(function(layer){
+	layer.bindPopup("Hello")
+});
+leafH.addTo(map);
+		</script>
+	</body>
+</html>

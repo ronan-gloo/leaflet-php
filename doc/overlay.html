@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Map standalone Overlays</title>
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.css" />
+				<script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
+				<style>
+			html, body{
+				margin: 0;
+			}
+			#map {
+				height: 400px;
+			}
+			.code {
+				margin: 10px;
+				padding: 10px;
+				border: 2px solid #e1e1e1;
+				background-color: #f5f5f5;
+			}
+			.code h3 {
+				margin: 0 0 5px 0;
+				padding-bottom: 5px;
+				border-bottom: 1px solid #e1e1e1;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div id="map"></div>
+		<div class="code">
+			<h3>Map standalone Overlays</h3>
+			<div><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php&nbsp;<br />$map&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Map</span><span style="color: #007700">(</span><span style="color: #DD0000">'map'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$map</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setView</span><span style="color: #007700">([</span><span style="color: #0000BB">40.773941</span><span style="color: #007700">,&nbsp;-</span><span style="color: #0000BB">74.12544</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">12</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$tile&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Layer</span><span style="color: #007700">\</span><span style="color: #0000BB">Tile</span><span style="color: #007700">\</span><span style="color: #0000BB">Stamen</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$tile</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addTo</span><span style="color: #007700">(</span><span style="color: #0000BB">$map</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Creates&nbsp;a&nbsp;standalone&nbsp;popup<br /></span><span style="color: #0000BB">$popup&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Layer</span><span style="color: #007700">\</span><span style="color: #0000BB">Popup</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$popup<br />&nbsp;&nbsp;</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setLatLng</span><span style="color: #007700">([</span><span style="color: #0000BB">40.773941</span><span style="color: #007700">,&nbsp;-</span><span style="color: #0000BB">74.12544</span><span style="color: #007700">])<br />&nbsp;&nbsp;-&gt;</span><span style="color: #0000BB">setContent</span><span style="color: #007700">(</span><span style="color: #DD0000">'&lt;p&gt;Hello&nbsp;world!&lt;br&nbsp;/&gt;This&nbsp;is&nbsp;a&nbsp;nice&nbsp;popup.&lt;/p&gt;'</span><span style="color: #007700">)<br />&nbsp;&nbsp;-&gt;</span><span style="color: #0000BB">openOn</span><span style="color: #007700">(</span><span style="color: #0000BB">$map</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//Setup&nbsp;an&nbsp;imageoverlay<br /></span><span style="color: #0000BB">$iover&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Layer</span><span style="color: #007700">\</span><span style="color: #0000BB">ImageOverlay</span><span style="color: #007700">(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'http://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;[[</span><span style="color: #0000BB">40.712216</span><span style="color: #007700">,&nbsp;-</span><span style="color: #0000BB">74.22655</span><span style="color: #007700">],&nbsp;[</span><span style="color: #0000BB">40.773941</span><span style="color: #007700">,&nbsp;-</span><span style="color: #0000BB">74.12544</span><span style="color: #007700">]]<br />);<br /></span><span style="color: #0000BB">$iover</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addTo</span><span style="color: #007700">(</span><span style="color: #0000BB">$map</span><span style="color: #007700">);<br /><br /></span>
+</span>
+</code></div>
+		</div>
+		
+		<script type="text/javascript">
+			var map = L.map("map").setView([40.773941,-74.12544],12);
+var leafA = L.tileLayer("http://{s}.tile.stamen.com/{style}/{z}/{x}/{y}.{ext}",{style:"toner",ext:"png",maxZoom:18}).addTo(map);
+var leafB = L.popup().setLatLng([40.773941,-74.12544]).setContent("<p>Hello world!<br />This is a nice popup.</p>").openOn(map);
+var leafC = L.imageOverlay("http://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg",[[40.712216,-74.22655],[40.773941,-74.12544]]).addTo(map);
+		</script>
+	</body>
+</html>

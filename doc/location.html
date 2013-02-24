@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Objects and callbacks</title>
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.css" />
+				<script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
+				<style>
+			html, body{
+				margin: 0;
+			}
+			#map {
+				height: 400px;
+			}
+			.code {
+				margin: 10px;
+				padding: 10px;
+				border: 2px solid #e1e1e1;
+				background-color: #f5f5f5;
+			}
+			.code h3 {
+				margin: 0 0 5px 0;
+				padding-bottom: 5px;
+				border-bottom: 1px solid #e1e1e1;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div id="map"></div>
+		<div class="code">
+			<h3>Objects and callbacks</h3>
+			<div><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php&nbsp;<br /></span><span style="color: #FF8000">//&nbsp;Attache&nbsp;aa&nbsp;event&nbsp;to&nbsp;the&nbsp;map<br /></span><span style="color: #0000BB">$layer&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Layer</span><span style="color: #007700">\</span><span style="color: #0000BB">Tile</span><span style="color: #007700">\</span><span style="color: #0000BB">Ovi</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">$map&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Map</span><span style="color: #007700">(</span><span style="color: #DD0000">'map'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$map</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addLayer</span><span style="color: #007700">(</span><span style="color: #0000BB">$layer</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$map</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">locate</span><span style="color: #007700">([</span><span style="color: #DD0000">'setView'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">]);<br /><br /></span><span style="color: #FF8000">//&nbsp;You&nbsp;can&nbsp;use&nbsp;string&nbsp;/&nbsp;or&nbsp;objets&nbsp;for&nbsp;the&nbsp;callback<br /></span><span style="color: #0000BB">$map</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">on</span><span style="color: #007700">(</span><span style="color: #DD0000">'locationfound'</span><span style="color: #007700">,&nbsp;function(</span><span style="color: #0000BB">$c</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$map</span><span style="color: #007700">){<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$coords&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">JsVar</span><span style="color: #007700">(</span><span style="color: #DD0000">'e.latlng'</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">args</span><span style="color: #007700">(</span><span style="color: #DD0000">'e'</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">line</span><span style="color: #007700">((new&nbsp;</span><span style="color: #0000BB">Layer</span><span style="color: #007700">\</span><span style="color: #0000BB">Vector</span><span style="color: #007700">\</span><span style="color: #0000BB">Circle</span><span style="color: #007700">(</span><span style="color: #0000BB">$coords</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">400</span><span style="color: #007700">))-&gt;</span><span style="color: #0000BB">addTo</span><span style="color: #007700">(</span><span style="color: #0000BB">$map</span><span style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">line</span><span style="color: #007700">((new&nbsp;</span><span style="color: #0000BB">Layer</span><span style="color: #007700">\</span><span style="color: #0000BB">Marker</span><span style="color: #007700">(</span><span style="color: #0000BB">$coords</span><span style="color: #007700">))-&gt;</span><span style="color: #0000BB">addTo</span><span style="color: #007700">(</span><span style="color: #0000BB">$map</span><span style="color: #007700">));<br />});<br /><br /></span><span style="color: #0000BB">$map</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">on</span><span style="color: #007700">(</span><span style="color: #DD0000">'locationerror'</span><span style="color: #007700">,&nbsp;function(</span><span style="color: #0000BB">$c</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$map</span><span style="color: #007700">){<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">args</span><span style="color: #007700">(</span><span style="color: #DD0000">'e'</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">line</span><span style="color: #007700">(</span><span style="color: #DD0000">'alert(e.message)'</span><span style="color: #007700">);<br />});<br /><br /></span>
+</span>
+</code></div>
+		</div>
+		
+		<script type="text/javascript">
+			var leafA = L.tileLayer("http://{s}.maptile.lbs.ovi.com/maptiler/{api}/maptile/newest/{style}.{display}/{z}/{x}/{y}/256/{format}?token={key}&app_id={appId}",{style:"normal",display:"day",key:"xxx",appId:"111",format:"png8",api:"v2",subdomains:"1234"});
+var map = L.map("map").addLayer(leafA).locate({setView:true});
+map.on("locationfound",function(e){
+	var leafl0 = L.circle(e.latlng,400).addTo(map);
+	var leafl1 = L.marker(e.latlng).addTo(map);
+});
+map.on("locationerror",function(e){
+	alert(e.message)
+});
+		</script>
+	</body>
+</html>

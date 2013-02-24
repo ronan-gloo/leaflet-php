@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Map Controls</title>
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.css" />
+				<script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
+				<style>
+			html, body{
+				margin: 0;
+			}
+			#map {
+				height: 400px;
+			}
+			.code {
+				margin: 10px;
+				padding: 10px;
+				border: 2px solid #e1e1e1;
+				background-color: #f5f5f5;
+			}
+			.code h3 {
+				margin: 0 0 5px 0;
+				padding-bottom: 5px;
+				border-bottom: 1px solid #e1e1e1;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div id="map"></div>
+		<div class="code">
+			<h3>Map Controls</h3>
+			<div><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php&nbsp;<br />$map&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Map</span><span style="color: #007700">(</span><span style="color: #DD0000">'map'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$map</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setView</span><span style="color: #007700">([</span><span style="color: #0000BB">51.505</span><span style="color: #007700">,&nbsp;-</span><span style="color: #0000BB">0.09</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">3</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Setup&nbsp;Attribution&nbsp;control<br /></span><span style="color: #0000BB">$attr&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Control</span><span style="color: #007700">\</span><span style="color: #0000BB">Attribution</span><span style="color: #007700">([<br />&nbsp;&nbsp;</span><span style="color: #DD0000">'prefix'&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'Leaflet&nbsp;PHP'</span><span style="color: #007700">,<br />&nbsp;&nbsp;</span><span style="color: #DD0000">'position'</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'bottomleft'<br /></span><span style="color: #007700">]);<br /></span><span style="color: #0000BB">$attr<br />&nbsp;&nbsp;</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addAttribution</span><span style="color: #007700">(</span><span style="color: #DD0000">"Custom&nbsp;Attribution"</span><span style="color: #007700">)<br />&nbsp;&nbsp;-&gt;</span><span style="color: #0000BB">addAttribution</span><span style="color: #007700">(</span><span style="color: #DD0000">"Another&nbsp;Attribution"</span><span style="color: #007700">)<br />&nbsp;&nbsp;-&gt;</span><span style="color: #0000BB">addTo</span><span style="color: #007700">(</span><span style="color: #0000BB">$map</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Setup&nbsp;Control&nbsp;Scale<br /></span><span style="color: #0000BB">$scale&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Control</span><span style="color: #007700">\</span><span style="color: #0000BB">Scale</span><span style="color: #007700">([</span><span style="color: #DD0000">'maxWidth'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">200</span><span style="color: #007700">]);<br /></span><span style="color: #0000BB">$scale</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addTo</span><span style="color: #007700">(</span><span style="color: #0000BB">$map</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Set&nbsp;Layers&nbsp;Control<br /></span><span style="color: #0000BB">$tiles</span><span style="color: #007700">[</span><span style="color: #DD0000">'Ovi'</span><span style="color: #007700">]&nbsp;=&nbsp;new&nbsp;</span><span style="color: #0000BB">Layer</span><span style="color: #007700">\</span><span style="color: #0000BB">Tile</span><span style="color: #007700">\</span><span style="color: #0000BB">Ovi</span><span style="color: #007700">([</span><span style="color: #DD0000">'style'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'satellite'</span><span style="color: #007700">]);<br /></span><span style="color: #0000BB">$tiles</span><span style="color: #007700">[</span><span style="color: #DD0000">'Osm'</span><span style="color: #007700">]&nbsp;=&nbsp;new&nbsp;</span><span style="color: #0000BB">Layer</span><span style="color: #007700">\</span><span style="color: #0000BB">Tile</span><span style="color: #007700">\</span><span style="color: #0000BB">Osm</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">//&nbsp;Display&nbsp;first&nbsp;tile&nbsp;by&nbsp;default<br /></span><span style="color: #0000BB">$tiles</span><span style="color: #007700">[</span><span style="color: #DD0000">'Ovi'</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">addTo</span><span style="color: #007700">(</span><span style="color: #0000BB">$map</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Add&nbsp;an&nbsp;overlay&nbsp;layer<br /></span><span style="color: #0000BB">$overlay</span><span style="color: #007700">[</span><span style="color: #DD0000">'Temp'</span><span style="color: #007700">]&nbsp;=&nbsp;new&nbsp;</span><span style="color: #0000BB">Layer</span><span style="color: #007700">\</span><span style="color: #0000BB">Tile</span><span style="color: #007700">\</span><span style="color: #0000BB">Openweather</span><span style="color: #007700">([<br />&nbsp;&nbsp;</span><span style="color: #DD0000">'style'&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'temp'</span><span style="color: #007700">,<br />&nbsp;&nbsp;</span><span style="color: #DD0000">'opacity'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">0.3<br /></span><span style="color: #007700">]);<br /><br /></span><span style="color: #FF8000">//&nbsp;Set&nbsp;control&nbsp;Layer<br /></span><span style="color: #0000BB">$layers&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Control</span><span style="color: #007700">\</span><span style="color: #0000BB">Layers</span><span style="color: #007700">(</span><span style="color: #0000BB">$tiles</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$overlay</span><span style="color: #007700">,&nbsp;[<br />&nbsp;&nbsp;</span><span style="color: #DD0000">'collapsed'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">false<br /></span><span style="color: #007700">]);<br /></span><span style="color: #0000BB">$layers</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addTo</span><span style="color: #007700">(</span><span style="color: #0000BB">$map</span><span style="color: #007700">);<br /><br /></span>
+</span>
+</code></div>
+		</div>
+		
+		<script type="text/javascript">
+			var map = L.map("map").setView([51.505,-0.09],3);
+var leafA = L.control.attribution({prefix:"Leaflet PHP",position:"bottomleft"}).addAttribution("Custom Attribution").addAttribution("Another Attribution").addTo(map);
+var leafB = L.control.scale({maxWidth:200}).addTo(map);
+var leafC = L.tileLayer("http://{s}.maptile.lbs.ovi.com/maptiler/{api}/maptile/newest/{style}.{display}/{z}/{x}/{y}/256/{format}?token={key}&app_id={appId}",{style:"satellite",display:"day",key:"xxx",appId:"111",format:"png8",api:"v2",subdomains:"1234"}).addTo(map);
+var leafD = L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png");
+var leafE = L.tileLayer("http://{s}.tile.openweathermap.org/map/{style}/{z}/{x}/{y}.png",{style:"temp",opacity:0.3});
+var leafF = L.control.layers({Ovi:leafC,Osm:leafD},{Temp:leafE},{collapsed:false}).addTo(map);
+		</script>
+	</body>
+</html>

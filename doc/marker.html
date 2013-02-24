@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Markers and Icons</title>
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.css" />
+				<script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
+				<style>
+			html, body{
+				margin: 0;
+			}
+			#map {
+				height: 400px;
+			}
+			.code {
+				margin: 10px;
+				padding: 10px;
+				border: 2px solid #e1e1e1;
+				background-color: #f5f5f5;
+			}
+			.code h3 {
+				margin: 0 0 5px 0;
+				padding-bottom: 5px;
+				border-bottom: 1px solid #e1e1e1;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div id="map"></div>
+		<div class="code">
+			<h3>Markers and Icons</h3>
+			<div><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php&nbsp;<br /></span><span style="color: #FF8000">//&nbsp;Set&nbsp;map&nbsp;Layers<br /></span><span style="color: #0000BB">$layers&nbsp;</span><span style="color: #007700">=&nbsp;[<br />&nbsp;&nbsp;new&nbsp;</span><span style="color: #0000BB">Layer</span><span style="color: #007700">\</span><span style="color: #0000BB">Tile</span><span style="color: #007700">\</span><span style="color: #0000BB">Ocm</span><span style="color: #007700">(),<br />&nbsp;&nbsp;new&nbsp;</span><span style="color: #0000BB">Layer</span><span style="color: #007700">\</span><span style="color: #0000BB">Marker</span><span style="color: #007700">([</span><span style="color: #0000BB">39.61</span><span style="color: #007700">,&nbsp;-</span><span style="color: #0000BB">105.02</span><span style="color: #007700">]),<br />&nbsp;&nbsp;new&nbsp;</span><span style="color: #0000BB">Layer</span><span style="color: #007700">\</span><span style="color: #0000BB">Marker</span><span style="color: #007700">([</span><span style="color: #0000BB">39.74</span><span style="color: #007700">,&nbsp;-</span><span style="color: #0000BB">104.99</span><span style="color: #007700">]),<br />&nbsp;&nbsp;new&nbsp;</span><span style="color: #0000BB">Layer</span><span style="color: #007700">\</span><span style="color: #0000BB">Marker</span><span style="color: #007700">([</span><span style="color: #0000BB">39.73</span><span style="color: #007700">,&nbsp;-</span><span style="color: #0000BB">104.8</span><span style="color: #007700">]),<br />&nbsp;&nbsp;new&nbsp;</span><span style="color: #0000BB">Layer</span><span style="color: #007700">\</span><span style="color: #0000BB">Marker</span><span style="color: #007700">([</span><span style="color: #0000BB">39.77</span><span style="color: #007700">,&nbsp;-</span><span style="color: #0000BB">105.23</span><span style="color: #007700">])<br />];<br /><br /></span><span style="color: #FF8000">//&nbsp;Create&nbsp;a&nbsp;&nbsp;icons<br /></span><span style="color: #0000BB">$icon&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Layer</span><span style="color: #007700">\</span><span style="color: #0000BB">Icon</span><span style="color: #007700">([<br />&nbsp;&nbsp;</span><span style="color: #DD0000">'iconUrl'&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'http://google-maps-icons.googlecode.com/files/tickmark1.png'</span><span style="color: #007700">,<br />&nbsp;&nbsp;</span><span style="color: #DD0000">'iconSize'&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">32<br /></span><span style="color: #007700">]);<br /></span><span style="color: #0000BB">$divIcon&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Layer</span><span style="color: #007700">\</span><span style="color: #0000BB">DivIcon</span><span style="color: #007700">([<br />&nbsp;&nbsp;</span><span style="color: #DD0000">'iconSize'&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;[</span><span style="color: #0000BB">64</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">64</span><span style="color: #007700">],<br />&nbsp;&nbsp;</span><span style="color: #DD0000">'html'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'Div&nbsp;Icon'<br /></span><span style="color: #007700">]);<br /><br /></span><span style="color: #FF8000">//&nbsp;Add&nbsp;icon&nbsp;to&nbsp;the&nbsp;last&nbsp;marker&nbsp;using&nbsp;'var&nbsp;=&nbsp;ref"&nbsp;javascript&nbsp;variable:<br /></span><span style="color: #0000BB">$layers</span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">useRef</span><span style="color: #007700">()-&gt;</span><span style="color: #0000BB">setIcon</span><span style="color: #007700">(</span><span style="color: #0000BB">$icon</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$layers</span><span style="color: #007700">[</span><span style="color: #0000BB">4</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">useRef</span><span style="color: #007700">()-&gt;</span><span style="color: #0000BB">setIcon</span><span style="color: #007700">(</span><span style="color: #0000BB">$divIcon</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Creates&nbsp;our&nbsp;map<br /></span><span style="color: #0000BB">$map&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Map</span><span style="color: #007700">(</span><span style="color: #DD0000">'map'</span><span style="color: #007700">,&nbsp;[<br />&nbsp;&nbsp;</span><span style="color: #DD0000">'zoom'&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">10</span><span style="color: #007700">,<br />&nbsp;&nbsp;</span><span style="color: #DD0000">'center'&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;new&nbsp;</span><span style="color: #0000BB">LatLng</span><span style="color: #007700">(</span><span style="color: #0000BB">39.73</span><span style="color: #007700">,&nbsp;-</span><span style="color: #0000BB">104.99</span><span style="color: #007700">),<br />&nbsp;&nbsp;</span><span style="color: #DD0000">'layers'&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">$layers<br /></span><span style="color: #007700">]);<br /><br /></span>
+</span>
+</code></div>
+		</div>
+		
+		<script type="text/javascript">
+			var leafA = L.tileLayer("http://{s}.tile.opencyclemap.org/{style}/{z}/{x}/{y}.png",{style:"cycle"});
+var leafB = L.marker([39.61,-105.02]);
+var leafC = L.marker([39.74,-104.99]);
+var leafD = L.marker([39.73,-104.8]);
+var leafE = L.marker([39.77,-105.23]);
+var leafF = L.icon({iconUrl:"http://google-maps-icons.googlecode.com/files/tickmark1.png",iconSize:32});
+var leafG = L.divIcon({iconSize:[64,64],html:"Div Icon"});
+leafD.setIcon(leafF);
+leafE.setIcon(leafG);
+var leafH = L.latLng(39.73,-104.99);
+var map = L.map("map",{zoom:10,center:leafH,layers:[leafA,leafB,leafC,leafD,leafE]});
+		</script>
+	</body>
+</html>

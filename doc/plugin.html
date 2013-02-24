@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Leaflet plugin example: Draw</title>
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.css" />
+									<link rel="stylesheet" href="http://leaflet.github.com/Leaflet.draw/leaflet.draw.css" />
+							<link rel="stylesheet" href="http://leaflet.github.com/Leaflet.draw/lib/leaflet/leaflet.css" />
+							<script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
+			
+							<script src="http://leaflet.github.com/Leaflet.draw/leaflet.draw.js"></script>
+							<style>
+			html, body{
+				margin: 0;
+			}
+			#map {
+				height: 400px;
+			}
+			.code {
+				margin: 10px;
+				padding: 10px;
+				border: 2px solid #e1e1e1;
+				background-color: #f5f5f5;
+			}
+			.code h3 {
+				margin: 0 0 5px 0;
+				padding-bottom: 5px;
+				border-bottom: 1px solid #e1e1e1;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div id="map"></div>
+		<div class="code">
+			<h3>Leaflet plugin example: Draw</h3>
+			<div><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php&nbsp;<br /></span><span style="color: #FF8000">//&nbsp;Creates&nbsp;the&nbsp;plugin&nbsp;that&nbsp;extends&nbsp;the&nbsp;control&nbsp;base&nbsp;class<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">DrawEdit&nbsp;</span><span style="color: #007700">extends&nbsp;</span><span style="color: #0000BB">Control</span><span style="color: #007700">\</span><span style="color: #0000BB">Control&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Plugin&nbsp;class&nbsp;name<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">public&nbsp;function&nbsp;</span><span style="color: #0000BB">jsName</span><span style="color: #007700">()<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #DD0000">'new&nbsp;L.Control.Draw'</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;A&nbsp;Hook&nbsp;example&nbsp;:&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">public&nbsp;function&nbsp;</span><span style="color: #0000BB">addTo</span><span style="color: #007700">(</span><span style="color: #0000BB">Map&nbsp;$map</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">parent</span><span style="color: #007700">::</span><span style="color: #0000BB">addTo</span><span style="color: #007700">(</span><span style="color: #0000BB">$map</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Prevent&nbsp;json_encode&nbsp;string<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$layerVar&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">JsVar</span><span style="color: #007700">(</span><span style="color: #DD0000">'e.layer'</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//Respond&nbsp;to&nbsp;the&nbsp;different&nbsp;actions&nbsp;users&nbsp;can&nbsp;trigger<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$map</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">on</span><span style="color: #007700">(</span><span style="color: #DD0000">'draw:created'</span><span style="color: #007700">,&nbsp;function(</span><span style="color: #0000BB">$c</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$map</span><span style="color: #007700">)&nbsp;use(</span><span style="color: #0000BB">$layerVar</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">args</span><span style="color: #007700">(</span><span style="color: #DD0000">'e'</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">line</span><span style="color: #007700">(</span><span style="color: #0000BB">$map</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">useRef</span><span style="color: #007700">()-&gt;</span><span style="color: #0000BB">addLayer</span><span style="color: #007700">(</span><span style="color: #0000BB">$layerVar</span><span style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;create&nbsp;a&nbsp;map&nbsp;in&nbsp;the&nbsp;"map"&nbsp;div,&nbsp;set&nbsp;the&nbsp;view&nbsp;to&nbsp;a&nbsp;given&nbsp;place&nbsp;and&nbsp;zoom<br /></span><span style="color: #0000BB">$map&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Map</span><span style="color: #007700">(</span><span style="color: #DD0000">'map'</span><span style="color: #007700">,&nbsp;[<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'center'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;[-</span><span style="color: #0000BB">37.77914</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">175.30867</span><span style="color: #007700">],<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'zoom'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">13<br /></span><span style="color: #007700">]);<br /><br /></span><span style="color: #FF8000">//&nbsp;add&nbsp;an&nbsp;OpenStreetMap&nbsp;tile&nbsp;layer<br /></span><span style="color: #0000BB">$layer&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Layer</span><span style="color: #007700">\</span><span style="color: #0000BB">Tile</span><span style="color: #007700">\</span><span style="color: #0000BB">Osm</span><span style="color: #007700">([<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'attribution'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'&amp;copy;&nbsp;&lt;a&nbsp;href="http://osm.org/copyright"&gt;OpenStreetMap&lt;/a&gt;&nbsp;contributors'<br /></span><span style="color: #007700">]);<br /></span><span style="color: #0000BB">$layer</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addTo</span><span style="color: #007700">(</span><span style="color: #0000BB">$map</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Initialize&nbsp;the&nbsp;FeatureGroup&nbsp;to&nbsp;store&nbsp;editable&nbsp;layers<br /></span><span style="color: #0000BB">$drawItems&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Layer</span><span style="color: #007700">\</span><span style="color: #0000BB">FeatureGroup</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$drawItems</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addTo</span><span style="color: #007700">(</span><span style="color: #0000BB">$map</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Initialize&nbsp;the&nbsp;draw&nbsp;control&nbsp;and&nbsp;pass&nbsp;it&nbsp;the&nbsp;FeatureGroup&nbsp;of&nbsp;editable&nbsp;layers<br /></span><span style="color: #0000BB">$drawControl&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">DrawEdit</span><span style="color: #007700">([<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'edit'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;[</span><span style="color: #DD0000">'featureGroup'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">$drawItems</span><span style="color: #007700">]<br />]);<br /></span><span style="color: #0000BB">$drawControl</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addTo</span><span style="color: #007700">(</span><span style="color: #0000BB">$map</span><span style="color: #007700">);<br /><br /></span>
+</span>
+</code></div>
+		</div>
+		
+		<script type="text/javascript">
+			var map = L.map("map",{center:[-37.77914,175.30867],zoom:13});
+var leafA = L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png",{attribution:"&copy; <a href=\"http://osm.org/copyright\">OpenStreetMap</a> contributors"}).addTo(map);
+var leafB = new L.FeatureGroup().addTo(map);
+var leafC = new L.Control.Draw({edit:{featureGroup:leafB}}).addTo(map);
+map.on("draw:created",function(e){
+	map.addLayer(e.layer);
+});
+		</script>
+	</body>
+</html>

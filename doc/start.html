@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Getting Started</title>
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.css" />
+				<script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
+				<style>
+			html, body{
+				margin: 0;
+			}
+			#map {
+				height: 400px;
+			}
+			.code {
+				margin: 10px;
+				padding: 10px;
+				border: 2px solid #e1e1e1;
+				background-color: #f5f5f5;
+			}
+			.code h3 {
+				margin: 0 0 5px 0;
+				padding-bottom: 5px;
+				border-bottom: 1px solid #e1e1e1;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div id="map"></div>
+		<div class="code">
+			<h3>Getting Started</h3>
+			<div><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php&nbsp;<br /><br /></span><span style="color: #FF8000">//&nbsp;First,&nbsp;you&nbsp;need&nbsp;to&nbsp;create&nbsp;a&nbsp;context&nbsp;to&nbsp;wrap&nbsp;javascript&nbsp;code.<br />//&nbsp;Context&nbsp;is&nbsp;like&nbsp;an&nbsp;environment,&nbsp;where&nbsp;code&nbsp;generation&nbsp;is&nbsp;wrapped<br />//&nbsp;Optional:&nbsp;Context&nbsp;options<br /></span><span style="color: #0000BB">$opts&nbsp;</span><span style="color: #007700">=&nbsp;[<br />&nbsp;&nbsp;</span><span style="color: #DD0000">'refName'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'context1'</span><span style="color: #007700">,&nbsp;</span><span style="color: #FF8000">//&nbsp;javascript&nbsp;vars&nbsp;basename<br />&nbsp;&nbsp;</span><span style="color: #DD0000">'refIncrement'</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'Aa'</span><span style="color: #007700">,&nbsp;</span><span style="color: #FF8000">//&nbsp;javascript&nbsp;vars&nbsp;name&nbsp;auto-incrementation&nbsp;pattern<br />&nbsp;&nbsp;</span><span style="color: #DD0000">'jsonFlags'&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">JSON_UNESCAPED_SLASHES&nbsp;</span><span style="color: #FF8000">//&nbsp;json_encode&nbsp;flags<br /></span><span style="color: #007700">];<br /><br /></span><span style="color: #FF8000">//&nbsp;Register&nbsp;a&nbsp;context<br /></span><span style="color: #0000BB">$contexts</span><span style="color: #007700">[]&nbsp;=&nbsp;new&nbsp;</span><span style="color: #0000BB">Context</span><span style="color: #007700">(</span><span style="color: #DD0000">'leaflet'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$opts</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Unless&nbsp;you&nbsp;create&nbsp;a&nbsp;new&nbsp;context,&nbsp;all&nbsp;code&nbsp;above&nbsp;will&nbsp;be&nbsp;catched&nbsp;by&nbsp;$context<br /></span><span style="color: #0000BB">$map&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Map</span><span style="color: #007700">(</span><span style="color: #DD0000">'map'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$map</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">locate</span><span style="color: #007700">([</span><span style="color: #DD0000">'setView'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">]);<br /><br /></span><span style="color: #0000BB">$tile&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Layer</span><span style="color: #007700">\</span><span style="color: #0000BB">Tile</span><span style="color: #007700">\</span><span style="color: #0000BB">Ocm</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$tile</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addTo</span><span style="color: #007700">(</span><span style="color: #0000BB">$map</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;new&nbsp;Tile&nbsp;in&nbsp;another&nbsp;context<br /></span><span style="color: #0000BB">$contexts</span><span style="color: #007700">[]&nbsp;=&nbsp;new&nbsp;</span><span style="color: #0000BB">Context</span><span style="color: #007700">(</span><span style="color: #DD0000">'leaflet2'</span><span style="color: #007700">,&nbsp;[</span><span style="color: #DD0000">'refName'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'context2'</span><span style="color: #007700">]);<br /></span><span style="color: #0000BB">$tile2&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Layer</span><span style="color: #007700">\</span><span style="color: #0000BB">Tile</span><span style="color: #007700">\</span><span style="color: #0000BB">Esri</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">//&nbsp;Switch&nbsp;back&nbsp;to&nbsp;context&nbsp;1&nbsp;and&nbsp;add&nbsp;a&nbsp;new&nbsp;Layer<br /></span><span style="color: #0000BB">Context</span><span style="color: #007700">::</span><span style="color: #0000BB">switchTo</span><span style="color: #007700">(</span><span style="color: #DD0000">'leaflet'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$tile3&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Layer</span><span style="color: #007700">\</span><span style="color: #0000BB">Tile</span><span style="color: #007700">\</span><span style="color: #0000BB">Mapquest</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">//&nbsp;Creates&nbsp;a&nbsp;new&nbsp;context&nbsp;for&nbsp;control&nbsp;layers.<br />//&nbsp;If&nbsp;no&nbsp;identifier&nbsp;is&nbsp;provided,&nbsp;the&nbsp;identifier&nbsp;is&nbsp;a&nbsp;uniqid()&nbsp;string<br /></span><span style="color: #0000BB">$contexts</span><span style="color: #007700">[]&nbsp;=&nbsp;new&nbsp;</span><span style="color: #0000BB">Context</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">Control</span><span style="color: #007700">::</span><span style="color: #0000BB">layers</span><span style="color: #007700">([<br />&nbsp;&nbsp;</span><span style="color: #DD0000">'Context&nbsp;1a'&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">$tile</span><span style="color: #007700">,<br />&nbsp;&nbsp;</span><span style="color: #DD0000">'Context&nbsp;2'&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">$tile2</span><span style="color: #007700">,<br />&nbsp;&nbsp;</span><span style="color: #DD0000">'Context&nbsp;1b'&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">$tile3</span><span style="color: #007700">,<br />])-&gt;</span><span style="color: #0000BB">addTo</span><span style="color: #007700">(</span><span style="color: #0000BB">$map</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Get&nbsp;The&nbsp;Javascript<br /></span><span style="color: #0000BB">$javascript&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">array_reduce</span><span style="color: #007700">(</span><span style="color: #0000BB">$contexts</span><span style="color: #007700">,&nbsp;function(&amp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$context</span><span style="color: #007700">){<br />&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">.=&nbsp;</span><span style="color: #0000BB">$context</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getJs</span><span style="color: #007700">();<br />});<br /><br /></span>
+</span>
+</code></div>
+		</div>
+		
+		<script type="text/javascript">
+			var map = L.map("map").locate({setView:true});
+var context1Aa = L.tileLayer("http://{s}.tile.opencyclemap.org/{style}/{z}/{x}/{y}.png",{style:"cycle"}).addTo(map);
+var context1Ab = L.tileLayer("http://mtile0{s}.mqcdn.com/tiles/1.0.0/vy/{style}/{z}/{x}/{y}.png",{style:"map",subdomains:"1234"});
+var context20 = L.tileLayer("http:\/\/server.arcgisonline.com\/ArcGIS\/rest\/services\/{style}\/MapServer\/tile\/{z}\/{y}\/{x}",{style:"World_Street_Map"});
+var llet0 = L.control.layers({"Context 1a":context1Aa,"Context 2":context20,"Context 1b":context1Ab}).addTo(map);
+		</script>
+	</body>
+</html>

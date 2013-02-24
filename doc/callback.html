@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Map events</title>
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.css" />
+				<script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
+				<style>
+			html, body{
+				margin: 0;
+			}
+			#map {
+				height: 400px;
+			}
+			.code {
+				margin: 10px;
+				padding: 10px;
+				border: 2px solid #e1e1e1;
+				background-color: #f5f5f5;
+			}
+			.code h3 {
+				margin: 0 0 5px 0;
+				padding-bottom: 5px;
+				border-bottom: 1px solid #e1e1e1;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div id="map"></div>
+		<div class="code">
+			<h3>Map events</h3>
+			<div><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php&nbsp;<br /></span><span style="color: #FF8000">//&nbsp;Set&nbsp;option&nbsp;callback:&nbsp;don't&nbsp;wrap&nbsp;map<br /></span><span style="color: #0000BB">$layer&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Layer</span><span style="color: #007700">\</span><span style="color: #0000BB">Tile</span><span style="color: #007700">\</span><span style="color: #0000BB">Osm</span><span style="color: #007700">([<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'noWrap'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;function(</span><span style="color: #0000BB">$c</span><span style="color: #007700">){<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">line</span><span style="color: #007700">(</span><span style="color: #DD0000">'return&nbsp;true;'</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />]);<br /><br /></span><span style="color: #FF8000">//&nbsp;Use&nbsp;the&nbsp;"onAdd"&nbsp;Control&nbsp;event<br /></span><span style="color: #0000BB">$control&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Control</span><span style="color: #007700">\</span><span style="color: #0000BB">Control</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$control</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">onAdd</span><span style="color: #007700">(function(</span><span style="color: #0000BB">$c</span><span style="color: #007700">){<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">line</span><span style="color: #007700">(</span><span style="color: #DD0000">"this._div&nbsp;=&nbsp;L.DomUtil.create('div',&nbsp;'leaflet-control-layers');"</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;</span><span style="color: #0000BB">line</span><span style="color: #007700">(</span><span style="color: #DD0000">"this._div.innerHTML&nbsp;=&nbsp;'&lt;h4&gt;Control&nbsp;Legend&lt;/h4&gt;';"</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;</span><span style="color: #0000BB">line</span><span style="color: #007700">(</span><span style="color: #DD0000">"return&nbsp;this._div;"</span><span style="color: #007700">);<br />});<br /><br /></span><span style="color: #FF8000">//&nbsp;Attache&nbsp;aa&nbsp;event&nbsp;to&nbsp;the&nbsp;map<br /></span><span style="color: #0000BB">$map&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Map</span><span style="color: #007700">(</span><span style="color: #DD0000">'map'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$map</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">on</span><span style="color: #007700">(</span><span style="color: #DD0000">'click'</span><span style="color: #007700">,&nbsp;function(</span><span style="color: #0000BB">$c</span><span style="color: #007700">){<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">args</span><span style="color: #007700">(</span><span style="color: #DD0000">'e'</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;Setup&nbsp;function&nbsp;argument<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">line</span><span style="color: #007700">(</span><span style="color: #DD0000">'alert("click")'</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;Add&nbsp;lineto&nbsp;function's&nbsp;body<br /></span><span style="color: #007700">});<br /><br /></span><span style="color: #0000BB">$map<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fitWorld</span><span style="color: #007700">()<br />&nbsp;&nbsp;&nbsp;&nbsp;-&gt;</span><span style="color: #0000BB">addLayer</span><span style="color: #007700">(</span><span style="color: #0000BB">$layer</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;-&gt;</span><span style="color: #0000BB">addControl</span><span style="color: #007700">(</span><span style="color: #0000BB">$control</span><span style="color: #007700">);<br /></span>
+</span>
+</code></div>
+		</div>
+		
+		<script type="text/javascript">
+			var leafA = L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png",{noWrap:function(){
+	return true;
+}});
+var leafB = L.control();
+leafB.onAdd = function(){
+	this._div = L.DomUtil.create('div', 'leaflet-control-layers');
+	this._div.innerHTML = '<h4>Control Legend</h4>';
+	return this._div;
+};
+var map = L.map("map");
+map.on("click",function(e){
+	alert("click")
+}).fitWorld().addLayer(leafA).addControl(leafB);
+		</script>
+	</body>
+</html>
