@@ -1,5 +1,5 @@
 <?php
 
-namespace Leaflet\Layer\Tile;
+namespace Leaflet\Exception;
 
 class InvalidProviderException extends \InvalidArgumentException {}

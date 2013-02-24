@@ -2,6 +2,8 @@
 
 namespace leaflet\Layer\Tile;
 
+use Leaflet\Exception\InvalidProviderException;
+
 /**
  * Open Street Map Provider.
  * 
