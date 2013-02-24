@@ -3,10 +3,9 @@
 namespace Leaflet\Util;
 
 use Closure;
-use Leaflet\Core\Jsonable;
 use Leaflet\JsFunc;
 
-class Option implements Jsonable {
+class Option {
 	
 	/**
 	 * Options storage
@@ -93,15 +92,5 @@ class Option implements Jsonable {
 	{
 		return $this->data;
 	}
-	
-	/**
-	 * @access public
-	 * @return void
-	 */
-	public function toJson()
-	{
-		return json_encode($this->data);
-	}
-
 	
 }
