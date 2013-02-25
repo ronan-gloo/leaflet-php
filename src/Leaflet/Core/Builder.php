@@ -218,7 +218,6 @@ class Builder implements IBuilder {
 		{
 			foreach ($parameters as $param)
 			{
-				// get the option array
 				$param and $arguments[] = Json::encode($param, $this->jsonFlags);
 			}
 		}

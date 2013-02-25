@@ -32,15 +32,13 @@ class Option extends ArrayObject {
 
 		foreach ($key as $name => $value)
 		{
-			if ($value instanceof Closure)
+			if (ctype_alnum($name))
 			{
-				$func = new JsFunc();
-				$value = $func->closure($value, $this);
-			}
-			
-			// Options key should be a non numeric string
-			if (is_string($name) and ! is_numeric($name))
-			{
+				if ($value instanceof Closure)
+				{
+					$func = new JsFunc();
+					$value = $func->closure($value, $this);
+				}
 				$this[$name] = $value;
 			}
 		}
