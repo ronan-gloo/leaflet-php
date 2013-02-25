@@ -4,8 +4,10 @@ namespace Leaflet;
 
 use Closure;
 use Leaflet\Core\JsObject;
-use UnexpectedValueException;
 
+/**
+ * @implements IFunc
+ */
 class JsFunc implements IFunc {
 	
 	/**
@@ -97,12 +99,6 @@ class JsFunc implements IFunc {
 		$context	= new Context(spl_object_hash($this));
 		$output		= call_user_func_array($closure, $args) ?: $this;
 
-		if (! $output instanceof JsFunc)
-		{
-			throw new UnexpectedValueException(
-				'Closure must returns a JsFunc instance object'
-			);
-		}
 		// Destroy temp context
 		$context->destroy();
 		Context::switchTo($current);
@@ -123,15 +119,11 @@ class JsFunc implements IFunc {
 		$output .= '}';
 		
 		return $output;
-		
 		/*
 		$pattern = array();
-		
-		foreach ($this->args as $key => $arg)
-		{
+		foreach ($this->args as $key => $arg) {
 			$pattern[] = '$'.($key+1);
 		}
-		
 		return $pattern ? str_replace($pattern, $this->args, $output) : $output;
 		*/
 	}

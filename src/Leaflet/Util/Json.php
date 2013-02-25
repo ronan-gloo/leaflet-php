@@ -11,6 +11,7 @@ use Leaflet\Core\Jsonable;
 class Json {
 
 	public static function encode( $data, $flags = null) {
+		
 		if( is_array($data) && is_int(key($data)) ) {
 			return '[' . self::implode($data, ',', function( $value, $key ) use($flags) {
 					return self::encode($value, $flags);

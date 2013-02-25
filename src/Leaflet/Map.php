@@ -53,7 +53,6 @@ class Map extends GSProxy implements Core\Nameable {
 	public function addLayers(array $layers)
 	{
 		foreach ($layers as $layer) $this->addLayer($layer);
-		
 		return $this;
 	}
 	

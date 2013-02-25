@@ -79,6 +79,7 @@ class Context {
 				}
 				return static::$current;
 			}
+			return null;
 		}
 		return static::$instances[$id];
 	}

@@ -233,7 +233,6 @@ class Builder implements IBuilder {
 				$param and $arguments[] = Json::encode($param, $this->jsonFlags);
 			}
 		}
-		
 		return '('. (implode(',', $arguments) ?: '') . ')';
 	}
 	

@@ -4,9 +4,7 @@ namespace Leaflet\Layer;
 
 /**
  * @abstract
- * @extends GSProxy
- * @implements Attachable
- * @implements ILayer
+ * @implements Layer
  */
 abstract class Overlay extends Layer {
 	
