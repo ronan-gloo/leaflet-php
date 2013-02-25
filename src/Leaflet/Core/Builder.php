@@ -219,10 +219,6 @@ class Builder implements IBuilder {
 			foreach ($parameters as $param)
 			{
 				// get the option array
-				if ($param instanceof Option)
-				{
-					$param = $param->toArray();
-				}
 				$param and $arguments[] = Json::encode($param, $this->jsonFlags);
 			}
 		}

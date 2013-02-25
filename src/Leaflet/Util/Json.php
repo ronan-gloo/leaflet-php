@@ -2,6 +2,7 @@
 
 namespace Leaflet\Util;
 
+use ArrayObject;
 use Leaflet\Core\Jsonable;
 
 /**

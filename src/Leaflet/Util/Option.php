@@ -2,18 +2,11 @@
 
 namespace Leaflet\Util;
 
+use ArrayObject;
 use Closure;
 use Leaflet\JsFunc;
 
-class Option {
-	
-	/**
-	 * Options storage
-	 * 
-	 * @var mixed
-	 * @access protected
-	 */
-	protected $data = array();
+class Option extends ArrayObject {
 	
 	/**
 	 * @access public
@@ -48,7 +41,7 @@ class Option {
 			// Options key should be a non numeric string
 			if (is_string($name) and ! is_numeric($name))
 			{
-				$this->data[$name] = $value;
+				$this[$name] = $value;
 			}
 		}
 		return $this;
@@ -63,9 +56,9 @@ class Option {
 	 */
 	public function get($key = null)
 	{
-		if (isset($this->data[$key]))
+		if (isset($this[$key]))
 		{
-			return $this->data[$key];
+			return $this[$key];
 		}
 	}
 	
@@ -76,21 +69,11 @@ class Option {
 	 */
 	public function delete($key)
 	{
-		if (array_key_exists($key, $this->data))
+		if (isset($this[$key]))
 		{
-			unset($this->data[$key]);
+			unset($this[$key]);
 			return true;
 		}
 		return false;
 	}
-	
-	/**
-	 * @access public
-	 * @return void
-	 */
-	public function toArray()
-	{
-		return $this->data;
-	}
-	
 }
