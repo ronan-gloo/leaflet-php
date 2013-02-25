@@ -176,7 +176,7 @@ class ObjectEvent {
 	public function callback($name, Closure $callback)
 	{
 		$func = new JsFunc;
-		$arguments = $func->getClosure($callback, $this->jsObject);
+		$arguments = $func->closure($callback, $this->jsObject);
 		
 		$this->methods[] = (object)compact('name', 'arguments');
 		return $this;
@@ -190,7 +190,7 @@ class ObjectEvent {
 	public function callbackMethod($name, Closure $callback)
 	{
 		$func = new JsFunc;
-		return $this->method($name, $func->getClosure($callback, $this->jsObject));
+		return $this->method($name, $func->closure($callback, $this->jsObject));
 	}
 	
 	/**
@@ -201,7 +201,7 @@ class ObjectEvent {
 	public function event($event, $handler, Closure $callback)
 	{
 		$func = new JsFunc;
-		$args = $func->getClosure($callback, $this->jsObject);
+		$args = $func->closure($callback, $this->jsObject);
 		
 		$this->methods[] = (object)array(
 			'name' 			=> $event,

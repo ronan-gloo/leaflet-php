@@ -42,7 +42,7 @@ class Option {
 			if ($value instanceof Closure)
 			{
 				$func = new JsFunc();
-				$value = $func->getClosure($value, $this);
+				$value = $func->closure($value, $this);
 			}
 			
 			// Options key should be a non numeric string

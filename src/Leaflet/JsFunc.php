@@ -31,14 +31,63 @@ class JsFunc implements IFunc {
 	public $lines = array();
 	
 	/**
+	 * If a name is set, the function is rendered
+	 * as var name = function()...
+	 * 
+	 * (default value: null)
+	 * 
+	 * @var mixed
+	 * @access public
+	 */
+	public $name = null;
+	
+	
+	/**
+	 * @access public
+	 * @param Closure $closure (default: null)
+	 * @return void
+	 */
+	public function __construct(Closure $closure = null)
+	{
+		$closure and $this->closure($closure);
+	}
+	
+	/**
+	 * Set the varname.
+	 * 
+	 * @access public
+	 * @param mixed $var
+	 * @return $this
+	 */
+	public function name($var = null)
+	{
+		$this->name = (string)$var;
+		return $this;
+	}
+	
+	/**
+	 * Get the varname.
+	 * 
+	 * @access public
+	 * @return String
+	 */
+	public function getName()
+	{
+		return $this->name;
+	}
+	
+	/**
 	 * Add function arguments.
 	 * 
 	 * @access public
 	 * @return void
 	 */
-	public function args()
+	public function args($arg)
 	{
-		$this->args = array_merge($this->args, func_get_args());
+		foreach (func_get_args() as $arg)
+		{
+			$this->args[] = $arg;
+		}
 		return $this;
 	}
 	
@@ -73,10 +122,14 @@ class JsFunc implements IFunc {
 	 * @return String
 	 */
 	public function getLines()
-	{
-		return array_reduce($this->lines, function(&$result, $line){
-			return $result .= "\t".trim($line)."\n";
-		});
+	{	
+		$lines = '';
+		
+		foreach ($this->lines as $line)
+		{
+			$lines .= "\t".trim($line)."\n";
+		}
+		return $lines;
 	}
 	
 	/**
@@ -90,7 +143,7 @@ class JsFunc implements IFunc {
 	 * @param Closure $closure
 	 * @return void
 	 */
-	public function getClosure(Closure $closure)
+	public function closure(Closure $closure)
 	{
 		$args			= func_get_args();
 		$args[0]	= $this;
@@ -114,7 +167,8 @@ class JsFunc implements IFunc {
 	 */
 	public function toJson()
 	{
-		$output  = 'function('.$this->getArgs().'){'."\n";
+		$output  = ($this->name) ? 'var '.$this->name.' = ' : '';
+		$output .= 'function('.$this->getArgs().'){'."\n";
 		$output .= $this->getLines();
 		$output .= '}';
 		
