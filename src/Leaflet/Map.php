@@ -10,6 +10,10 @@ use
 	OutOfBoundsException
 ;
 
+/**
+ * @extends GSProxy
+ * @implements Core\Nameable
+ */
 class Map extends GSProxy implements Core\Nameable {
 	
 	const jsName = 'L.map';
@@ -52,7 +56,10 @@ class Map extends GSProxy implements Core\Nameable {
 	 */
 	public function addLayers(array $layers)
 	{
-		foreach ($layers as $layer) $this->addLayer($layer);
+		foreach ($layers as $layer)
+		{
+			$this->addLayer($layer);
+		}
 		return $this;
 	}
 	
@@ -122,7 +129,6 @@ class Map extends GSProxy implements Core\Nameable {
 	public function locate(array $options = array())
 	{
 		$this->event->method('locate', array($options));
-		
 		return $this;
 	}
 	

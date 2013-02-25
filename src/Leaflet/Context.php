@@ -228,9 +228,7 @@ class Context {
 	 */
 	public function getJs()
 	{
-		$this->build();
-		
-		return $this->builder->output();
+		return $this->build();
 	}
 	
 	/**

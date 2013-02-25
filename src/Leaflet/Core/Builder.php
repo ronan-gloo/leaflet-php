@@ -172,10 +172,8 @@ class Builder implements IBuilder {
 			$output .= $identifier;
 			break;
 		}
-		
 		// Setup methods
 		$output .= $this->buildMethods($instance);
-		
 		// close the chained object
 		$output .= ';'."\n";
 		
@@ -196,14 +194,9 @@ class Builder implements IBuilder {
 			foreach ($methods as $method)
 			{
 				// Check if arg is func
-				if ($method->arguments instanceof Ifunc)
-				{
-					$args = ' = '.$method->arguments->toJson();
-				}
-				else
-				{
-					$args = $this->buildArguments($method->arguments);
-				}
+				$args = $method->arguments instanceof Ifunc
+					? ' = '.$method->arguments->toJson()
+					: $this->buildArguments($method->arguments);
 
 				$chain .= '.'.$method->name.$args;
 			}
@@ -233,7 +226,7 @@ class Builder implements IBuilder {
 				$param and $arguments[] = Json::encode($param, $this->jsonFlags);
 			}
 		}
-		return '('. (implode(',', $arguments) ?: '') . ')';
+		return '('. ($arguments ? implode(',', $arguments) : '') . ')';
 	}
 	
 	/**
