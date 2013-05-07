@@ -19,15 +19,6 @@ class JsVar implements IVar {
 
     /**
      * @param null $name
-     * @return JsVar
-     */
-    public static function make($name = null)
-	{
-		return new self($name);
-	}
-
-    /**
-     * @param null $name
      */
     public function __construct($name = null)
 	{
@@ -46,7 +37,7 @@ class JsVar implements IVar {
 			$this->name = trim($name);
 			return $this;
 		}
-		throw new InvalidJsVarNameException($name);
+		throw new InvalidJsVarNameException(gettype($name));
 	}
 
     /**

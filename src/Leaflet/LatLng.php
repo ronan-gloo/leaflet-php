@@ -4,29 +4,34 @@ namespace Leaflet;
 
 use Leaflet\Core\JsObject;
 
+/**
+ * Class LatLng
+ * @package Leaflet
+ */
 class LatLng extends JsObject {
-	
-	const jsName = 'L.latLng';
+
+    /**
+     *
+     */
+    const jsName = 'L.latLng';
 	
 	/**
-	 * @var mixed
+	 * @var float
 	 * @access protected
 	 */
 	protected $lat = 0.0;
 	
 	/**
-	 * @var mixed
+	 * @var float
 	 * @access protected
 	 */
 	protected $lng = 0.0;
-	
-	/**
-	 * @access public
-	 * @param array $coords (default: array())
-	 * @param array $options (default: array())
-	 * @return void
-	 */
-	public function __construct($lat, $lng)
+
+    /**
+     * @param float $lat
+     * @param float $lng
+     */
+    public function __construct($lat = 0.0, $lng = 0.0)
 	{
 		$this->setLat($lat);
 		$this->setLng($lng);
@@ -34,23 +39,37 @@ class LatLng extends JsObject {
 		$this->setEvent();
 		$this->event->constructor(array($this->lat, $this->lng));
 	}
-	
-	public function setLat($lat)
+
+    /**
+     * @param $lat
+     * @return float
+     */
+    public function setLat($lat)
 	{
 		return $this->lat = (float)$lat;
 	}
-	
-	public function geLat()
+
+    /**
+     * @return float
+     */
+    public function getLat()
 	{
 		return $this->lat;
 	}
 
-	public function setLng($lng)
+    /**
+     * @param $lng
+     * @return float
+     */
+    public function setLng($lng)
 	{
 		return $this->lng = (float)$lng;
 	}
-	
-	public function geLng()
+
+    /**
+     * @return float
+     */
+    public function getLng()
 	{
 		return $this->lng;
 	}
