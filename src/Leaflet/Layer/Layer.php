@@ -15,7 +15,7 @@ abstract class Layer extends Core\Layer {
 	/**
 	 * @access public
 	 * @param mixed $coords
-	 * @return void
+	 * @return $this
 	 */
 	public function setLatLng($coords)
 	{

@@ -6,28 +6,31 @@ namespace Leaflet\Layer;
  * @abstract
  * @implements Layer
  */
+/**
+ * Class Overlay
+ * @package Leaflet\Layer
+ */
 abstract class Overlay extends Layer {
-	
-	/**
-	 * @access public
-	 * @param mixed $identifier
-	 * @param array $coords (default: array())
-	 * @param array $options (default: array())
-	 * @return void
-	 */
-	public function __construct(array $coords = array(), array $options = array())
+
+
+    /**
+     * @param array $coords
+     * @param array $options
+     */
+    public function __construct(array $coords = array(), array $options = array())
 	{
 		$this->setEvent();
 		$this->setOptions($options);
 
 		$this->event->constructor(array($coords, $options));
 	}
-	
-	/**
-	 * @access public
-	 * @return void
-	 */
-	public function bindPopup($contents)
+
+
+    /**
+     * @param $contents
+     * @return $this
+     */
+    public function bindPopup($contents)
 	{
 		$this->event->method('bindPopup', $contents);
 		return $this;
@@ -38,7 +41,7 @@ abstract class Overlay extends Layer {
 	 * 
 	 * @access public
 	 * @param mixed $popup (default: null): Popup string
-	 * @return void
+	 * @return $this
 	 */
 	public function openPopup($popup = null)
 	{

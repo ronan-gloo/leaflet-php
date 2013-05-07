@@ -53,14 +53,13 @@ class Builder implements IBuilder {
 	 * @access protected
 	 */
 	protected $output = '';
-	
-	
-	/**
-	 * See interface doc 
-	 * @access public
-	 * @param mixed $ref
-	 */
-	public function setRefName($ref)
+
+    /**
+     * @param mixed $ref
+     * @return $this
+     * @throws \Leaflet\Exception\InvalidJsVarNameException
+     */
+    public function setRefName($ref)
 	{
 		if (is_string($ref) and ! is_numeric($ref))
 		{
@@ -72,12 +71,12 @@ class Builder implements IBuilder {
 		}
 		return $this;
 	}
-	
-	/**
-	 * @access public
-	 * @return $this
-	 */
-	public function setRefIncrement($inc)
+
+    /**
+     * @param mixed $inc
+     * @return $this
+     */
+    public function setRefIncrement($inc)
 	{
 		$this->increment = $inc;
 		return $this;
@@ -103,20 +102,18 @@ class Builder implements IBuilder {
 	{
 		return $this->identifier;
 	}
-	
-	/**
-	 * @access public
-	 * @static
-	 * @return void
-	 */
-	public function setQueue(IQueue $queue)
+
+    /**
+     * @param IQueue $queue
+     */
+    public function setQueue(IQueue $queue)
 	{
 		$this->queue = $queue;
 	}
 
 	/**
 	 * @access public
-	 * @return void
+	 * @return string
 	 */
 	public function build()
 	{
@@ -132,13 +129,12 @@ class Builder implements IBuilder {
 		}
 		return $this->output;
 	}
-	
-	/**
-	 * @access public
-	 * @param Queue $element
-	 * @return void
-	 */
-	public function buildElement($item)
+
+    /**
+     * @param $item
+     * @return string
+     */
+    public function buildElement($item)
 	{
 		$instance = $item->instance;
 		$element	= $instance->getObject();
@@ -164,7 +160,7 @@ class Builder implements IBuilder {
 			}
 			// add the class name
 			$output .= $element->jsName();
-			// setup the contructor paramemeters if found
+			// setup the constructor parameters if found
 			$output .= $this->buildArguments($instance->getConstructor());
 			break;
 			
@@ -179,13 +175,12 @@ class Builder implements IBuilder {
 		
 		return $output;
 	}
-	
-	/**
-	 * @access public
-	 * @param Queue $instance
-	 * @return void
-	 */
-	public function buildMethods(ObjectEvent $instance)
+
+    /**
+     * @param ObjectEvent $instance
+     * @return string
+     */
+    public function buildMethods(ObjectEvent $instance)
 	{
 		$chain = '';
 		
@@ -203,14 +198,12 @@ class Builder implements IBuilder {
 		}
 		return $chain;
 	}
-	
-	/**
-	 * Build method arguments.
-	 * 
-	 * @access protected
-	 * @return void
-	 */
-	protected function buildArguments($parameters)
+
+    /**
+     * @param $parameters
+     * @return string
+     */
+    protected function buildArguments($parameters)
 	{
 		$arguments = array();
 		
@@ -223,14 +216,11 @@ class Builder implements IBuilder {
 		}
 		return '('. ($arguments ? implode(',', $arguments) : '') . ')';
 	}
-	
-	/**
-	 * Get the string val.
-	 * 
-	 * @access public
-	 * @return void
-	 */
-	public function output()
+
+    /**
+     * @return string
+     */
+    public function output()
 	{
 		return $this->output;
 	}

@@ -61,13 +61,12 @@ class Context {
 	 * @access protected
 	 */
 	protected $options = array();
-		
-	/**
-	 * @access public
-	 * @static
-	 * @return void
-	 */
-	public static function instance($id = null)
+
+    /**
+     * @param null $id
+     * @return Context|mixed|null
+     */
+    public static function instance($id = null)
 	{
 		if (! isset(static::$instances[$id]))
 		{
@@ -112,7 +111,7 @@ class Context {
 	/**
 	 * @access public
 	 * @static
-	 * @return void
+	 * @return static::$instances
 	 */
 	public static function instances()
 	{
@@ -133,22 +132,22 @@ class Context {
 		return static::$current ?: static::instance();
 	}
 
-	/**
-	 * @access public
-	 * @param IQueue $queue (default: null)
-	 * @param IBuilder $builder (default: null)
-	 * @return void
-	 */
-	public function __construct($id = null, array $options = array(), IBuilder $builder = null, IQueue $queue = null)
+    /**
+     * @param null $id
+     * @param array $options
+     * @param IBuilder $builder
+     * @param IQueue $queue
+     */
+    public function __construct($id = null, array $options = array(), IBuilder $builder = null, IQueue $queue = null)
 	{
 		$this->builder	= $builder	?: new Core\Builder;
-		$this->queue		= $queue 		?: new Core\Queue;
+		$this->queue	= $queue    ?: new Core\Queue;
 		
 		$this->options = $options + array(
-			'eventRef'			=> 'e',
-			'refName' 			=> 'llet',
+			'eventRef'		=> 'e',
+			'refName' 		=> 'llet',
 			'refIncrement' 	=> 0,
-			'jsonFlags'			=> null,
+			'jsonFlags'		=> null,
 		);
 		
 		$this->id = (string)($id ?: spl_object_hash($this));
@@ -206,7 +205,7 @@ class Context {
 	
 	/**
 	 * @access public
-	 * @return void
+	 * @return string
 	 */
 	public function build()
 	{
@@ -224,7 +223,7 @@ class Context {
 	 * output function.
 	 * 
 	 * @access public
-	 * @return void
+	 * @return string
 	 */
 	public function getJs()
 	{

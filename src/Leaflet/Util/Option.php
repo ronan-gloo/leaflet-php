@@ -6,14 +6,16 @@ use ArrayObject;
 use Closure;
 use Leaflet\JsFunc;
 
+/**
+ * Class Option
+ * @package Leaflet\Util
+ */
 class Option extends ArrayObject {
-	
-	/**
-	 * @access public
-	 * @param array $options (default: array())
-	 * @return void
-	 */
-	public function __construct(array $options = array())
+
+    /**
+     * @param array $options
+     */
+    public function __construct(array $options = array())
 	{
 		! empty($options) and $this->set($options);
 	}
@@ -44,15 +46,12 @@ class Option extends ArrayObject {
 		}
 		return $this;
 	}
-	
-	/**
-	 * get an option.
-	 * 
-	 * @access public
-	 * @param mixed $key (default: null)
-	 * @return $option contents
-	 */
-	public function get($key = null)
+
+    /**
+     * @param null $key
+     * @return mixed
+     */
+    public function get($key = null)
 	{
 		if (isset($this[$key]))
 		{
@@ -63,7 +62,7 @@ class Option extends ArrayObject {
 	/**
 	 * @access public
 	 * @param mixed $key
-	 * @return void
+	 * @return bool
 	 */
 	public function delete($key)
 	{

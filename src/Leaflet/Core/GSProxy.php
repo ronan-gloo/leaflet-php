@@ -14,23 +14,19 @@ abstract class GSProxy extends JsObject {
 	 * @access protected
 	 */
 	private $proxify = array('set', 'get', 'del');
-	
-	/**
-	 * The options
-	 * 
-	 * (default value: array())
-	 * 
-	 * @var array
-	 * @access protected
-	 */
-	protected $options = null;
-	
-	/**
-	 * @access public
-	 * @param mixed $m
-	 * @param mixed $args
-	 */
-	public function __call($m, $args)
+
+    /**
+     * @var \Leaflet\Util\Option
+     */
+    protected $options;
+
+    /**
+     * @param $m
+     * @param $args
+     * @return mixed
+     * @throws \BadMethodCallException
+     */
+    public function __call($m, $args)
 	{
 		if (($method = substr($m, 0, 3)) and (in_array($method, $this->proxify)))
 		{
@@ -42,32 +38,32 @@ abstract class GSProxy extends JsObject {
 		}
 		throw new BadMethodCallException("Method {$m} doesn't exists");
 	}
-		
-	/**
-	 * @access private
-	 * @param mixed $key
-	 * @param mixed $val
-	 */
-	private function _set_($key, $val)
+
+    /**
+     * @param $key
+     * @param $val
+     * @return $this
+     */
+    private function _set_($key, $val)
 	{
 		$this->options->set($key, $val);
 		return $this;
 	}
-	
-	/**
-	 * @access protected
-	 * @param mixed $key
-	 */
-	private function _get_($key)
+
+    /**
+     * @param $key
+     * @return mixed
+     */
+    private function _get_($key)
 	{
 		return $this->options->get($key);
 	}
-	
-	/**
-	 * @access public
-	 * @param mixed $key
-	 */
-	private function _del_($key)
+
+    /**
+     * @param $key
+     * @return bool
+     */
+    private function _del_($key)
 	{
 		return $this->options->delete($key);
 	}

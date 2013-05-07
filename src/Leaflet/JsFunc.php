@@ -40,22 +40,18 @@ class JsFunc implements IFunc {
 	 * @access public
 	 */
 	public $name = null;
-	
-	
-	/**
-	 * @access public
-	 * @param Closure $closure (default: null)
-	 * @return void
-	 */
-	public function __construct(Closure $closure = null)
+
+    /**
+     * @param callable $closure
+     */
+    public function __construct(Closure $closure = null)
 	{
 		$closure and $this->closure($closure);
 	}
 	
 	/**
 	 * Set the varname.
-	 * 
-	 * @access public
+	 *
 	 * @param mixed $var
 	 * @return $this
 	 */
@@ -67,22 +63,20 @@ class JsFunc implements IFunc {
 	
 	/**
 	 * Get the varname.
-	 * 
-	 * @access public
+	 *
 	 * @return String
 	 */
 	public function getName()
 	{
 		return $this->name;
 	}
-	
-	/**
-	 * Add function arguments.
-	 * 
-	 * @access public
-	 * @return void
-	 */
-	public function args($arg)
+
+    /**
+     * Register Js function arguments
+     * @param $arg
+     * @return $this
+     */
+    public function args($arg)
 	{
 		foreach (func_get_args() as $arg)
 		{
@@ -141,11 +135,11 @@ class JsFunc implements IFunc {
 	 * @access public
 	 * @static
 	 * @param Closure $closure
-	 * @return void
+	 * @return mixed
 	 */
 	public function closure(Closure $closure)
 	{
-		$args			= func_get_args();
+		$args		= func_get_args();
 		$args[0]	= $this;
 		
 		$current	= Context::current();
@@ -163,7 +157,7 @@ class JsFunc implements IFunc {
 	 * toJson function.
 	 * 
 	 * @access public
-	 * @return void
+	 * @return string
 	 */
 	public function toJson()
 	{
@@ -181,8 +175,11 @@ class JsFunc implements IFunc {
 		return $pattern ? str_replace($pattern, $this->args, $output) : $output;
 		*/
 	}
-	
-	public function __toString()
+
+    /**
+     * @return string
+     */
+    public function __toString()
 	{
 		return $this->toJson();
 	}

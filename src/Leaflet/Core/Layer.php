@@ -16,7 +16,7 @@ abstract class Layer extends GSProxy implements ILayer {
 	/**
 	 * @access public
 	 * @param Closure $closure
-	 * @return void
+	 * @return $this
 	 */
 	public function onAdd(Closure $closure)
 	{
@@ -28,7 +28,7 @@ abstract class Layer extends GSProxy implements ILayer {
 	/**
 	 * @access public
 	 * @param Closure $closure
-	 * @return void
+	 * @return $this
 	 */
 	public function onRemove(Closure $closure)
 	{
@@ -57,7 +57,6 @@ abstract class Layer extends GSProxy implements ILayer {
 	public function bringToFront()
 	{
 		$this->event->method('bringToFront');
-		
 		return $this;
 	}
 	
@@ -70,10 +69,6 @@ abstract class Layer extends GSProxy implements ILayer {
 	public function bringToBack()
 	{
 		$this->event->method('bringToBack');
-		
 		return $this;
 	}
-
-	
-	
 }

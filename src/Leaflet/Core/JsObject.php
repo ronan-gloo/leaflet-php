@@ -14,7 +14,7 @@ use ReflectionClass;
 abstract class JsObject implements Nameable, Jsonable {
 	
 	/**
-	 * @var mixed
+	 * @var Option
 	 * @access protected
 	 * @static
 	 */
@@ -38,42 +38,38 @@ abstract class JsObject implements Nameable, Jsonable {
 	 * @access protected
 	 */
 	protected $registry;
-	
-	/**
-	 * Bind instance constructor.
-	 * 
-	 * @access public
-	 * @static
-	 * @return void
-	 */
-	public static function make()
+
+    /**
+     * @var ObjectEvent
+     */
+    protected $event;
+
+    /**
+     * @return object
+     */
+    public static function make()
 	{
 		$ref = new ReflectionClass(get_called_class());
 		return $ref->newInstanceArgs(func_get_args());
 	}
-	
-	/**
-	 * Catch instance events.
-	 * 
-	 * @access public
-	 * @param mixed $m
-	 * @param mixed $args
-	 * @return void
-	 */
-	public function on($event, Closure $callback)
+
+    /**
+     * @param $event
+     * @param callable $callback
+     * @return $this
+     */
+    public function on($event, Closure $callback)
 	{
 		$this->useRef();
 		$this->event->event('on', $event, $callback);
 		return $this;
 	}
-	
-	/**
-	 * Create new buidser.
-	 * 
-	 * @access public
-	 * @return void
-	 */
-	public function setEvent($new = true)
+
+    /**
+     * @param bool $new
+     * @return $this
+     */
+    public function setEvent($new = true)
 	{
 		$this->event = new ObjectEvent($this);
 		
@@ -81,14 +77,12 @@ abstract class JsObject implements Nameable, Jsonable {
 		
 		return $this;
 	}
-	
-	/**
-	 * Initialize the options.
-	 * 
-	 * @access public
-	 * @return void
-	 */
-	public function setOptions(array $options)
+
+    /**
+     * @param array $options
+     * @return $this
+     */
+    public function setOptions(array $options)
 	{
 		! static::$_option and static::$_option = new Option();
 		
@@ -101,7 +95,7 @@ abstract class JsObject implements Nameable, Jsonable {
 	/**
 	 * @access public
 	 * @param mixed $identifier
-	 * @return void
+	 * @return $this
 	 */
 	public function setRef($identifier)
 	{
@@ -112,7 +106,7 @@ abstract class JsObject implements Nameable, Jsonable {
 	
 	/**
 	 * @access public
-	 * @return void
+	 * @return string
 	 */
 	public function getRef()
 	{
@@ -124,7 +118,7 @@ abstract class JsObject implements Nameable, Jsonable {
 	 * the compilator will creates a new var entry
 	 * 
 	 * @access public
-	 * @return void
+	 * @return $this
 	 */
 	public function useRef()
 	{
@@ -134,7 +128,7 @@ abstract class JsObject implements Nameable, Jsonable {
 	
 	/**
 	 * @access public
-	 * @return void
+	 * @return array
 	 */
 	public function getOptions()
 	{
@@ -162,13 +156,11 @@ abstract class JsObject implements Nameable, Jsonable {
 	{
 		return $this->identifier;
 	}
-	
-	/**
-	 * Build element then remove it from queue
-	 * @access public
-	 * @return void
-	 */
-	public function __toString()
+
+    /**
+     * @return string
+     */
+    public function __toString()
 	{
 		// Get the Queue element
 		$queue = Context::current()->queue();

@@ -15,14 +15,16 @@ use Leaflet\Exception\BadTypeException;
  * @implements Attachable
  */
 class Group extends Layer {
-	
-	const jsName = 'L.layerGroup';
-	
-	/**
-	 * @access public
-	 * @return void
-	 */
-	public function __construct(array $layers = array())
+
+    /**
+     *
+     */
+    const jsName = 'L.layerGroup';
+
+    /**
+     * @param array $layers
+     */
+    public function __construct(array $layers = array())
 	{
 		$this->setEvent();
 		
@@ -30,15 +32,13 @@ class Group extends Layer {
 		
 		return $this;
 	}
-	
-	/**
-	 * Add a layer to the group.
-	 * 
-	 * @access public
-	 * @param mixed $layer
-	 * @return void
-	 */
-	public function addLayer($layer)
+
+    /**
+     * @param $layer
+     * @return $this
+     * @throws \Leaflet\Exception\BadTypeException
+     */
+    public function addLayer($layer)
 	{
 		if (! $layer instanceof Ilayer and ! $layer instanceof JsVar)
 		{
@@ -48,15 +48,13 @@ class Group extends Layer {
 		
 		return $this;
 	}
-	
-	/**
-	 * Remove layer from group.
-	 * 
-	 * @access public
-	 * @param mixed $layer
-	 * @return void
-	 */
-	public function removeLayer($layer)
+
+    /**
+     * @param $layer
+     * @return $this
+     * @throws \Leaflet\Exception\BadTypeException
+     */
+    public function removeLayer($layer)
 	{
 		if (! $layer instanceof Ilayer and ! $layer instanceof JsVar)
 		{
@@ -68,8 +66,7 @@ class Group extends Layer {
 	}
 	
 	/**
-	 * @access public
-	 * @return void
+	 * @return $this
 	 */
 	public function clearLayers()
 	{
@@ -77,14 +74,12 @@ class Group extends Layer {
 		
 		return $this;
 	}
-	
-	/**
-	 * Loop throught layers.
-	 * 
-	 * @access public
-	 * @return void
-	 */
-	public function eachLayer(Closure $closure)
+
+    /**
+     * @param callable $closure
+     * @return $this
+     */
+    public function eachLayer(Closure $closure)
 	{
 		$this->useRef();
 		$this->event->callbackMethod('eachLayer', $closure);

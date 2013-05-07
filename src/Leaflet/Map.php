@@ -4,10 +4,7 @@ namespace Leaflet;
 
 use
 	Leaflet\Core\GSProxy,
-	Leaflet\Core\ILayer,
-	Leaflet\Control,
-	Leaflet\Exception\BadTypeException,
-	OutOfBoundsException
+	Leaflet\Control
 ;
 
 /**
@@ -15,14 +12,17 @@ use
  * @implements Core\Nameable
  */
 class Map extends GSProxy implements Core\Nameable {
-	
-	const jsName = 'L.map';
-	
-	/**
-	 * @access public
-	 * @return void
-	 */
-	public function __construct($identifier, array $options = array())
+
+    /**
+     *
+     */
+    const jsName = 'L.map';
+
+    /**
+     * @param $identifier
+     * @param array $options
+     */
+    public function __construct($identifier, array $options = array())
 	{
 		$this->setRef($identifier);
 		$this->setOptions($options);
@@ -30,13 +30,13 @@ class Map extends GSProxy implements Core\Nameable {
 		
 		$this->event->constructor(array($identifier, $this->options));
 	}
-	
-	/**
-	 * @access public
-	 * @param Layer $layer
-	 * @return $this
-	 */
-	public function addLayer(IVar $layer, $insertAtBottom = null)
+
+    /**
+     * @param IVar $layer
+     * @param null $insertAtBottom
+     * @return $this
+     */
+    public function addLayer(IVar $layer, $insertAtBottom = null)
 	{
 		if (is_bool($insertAtBottom))
 		{
@@ -49,12 +49,11 @@ class Map extends GSProxy implements Core\Nameable {
 		return $this;
 	}
 
-	/**
-	 * @access public
-	 * @param Layer $layer
-	 * @return $this
-	 */
-	public function addLayers(array $layers)
+    /**
+     * @param array $layers
+     * @return $this
+     */
+    public function addLayers(array $layers)
 	{
 		foreach ($layers as $layer)
 		{
@@ -62,37 +61,31 @@ class Map extends GSProxy implements Core\Nameable {
 		}
 		return $this;
 	}
-	
-	/**
-	 * @access public
-	 * @param Layer $layer
-	 * @return $this
-	 */
-	public function removeLayer(IVar $layer)
+
+    /**
+     * @param IVar $layer
+     * @return $this
+     */
+    public function removeLayer(IVar $layer)
 	{
 		$this->event->method('removeLayer', $layer);
 		return $this;
 	}
-	
-	/**
-	 * @access public
-	 * @param Control $control
-	 * @return void
-	 */
-	public function addControl(Control\Control $control)
+
+    /**
+     * @param Control\Control $control
+     * @return $this
+     */
+    public function addControl(Control\Control $control)
 	{
 		$this->event->method('addControl', $control);
 		return $this;
 	}
-	
-	/**
-	 * @access public
-	 * @param array $coords
-	 * @param mixed $zoom (default: null)
-	 * @param bool $forceReset (default: false)
-	 * @return $this
-	 */
-	public function setView()
+
+    /**
+     * @return $this
+     */
+    public function setView()
 	{
 		$this->event->method('setView', func_get_args());
 		return $this;

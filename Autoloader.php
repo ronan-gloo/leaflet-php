@@ -15,7 +15,7 @@ class Autoloader {
         return;
     }
 
-    if (file_exists($file = __DIR__ . '/../' . strtr($class, '\\', '/').'.php')) {
+    if (file_exists($file = __DIR__ . '/src/' . strtr($class, '\\', '/').'.php')) {
         require $file;
     }
   }
